@@ -102,8 +102,14 @@ const transformedData = computed(() => {
         .map((q) => ({
             ...q,
             dateRange: `${q.days[0].date} - ${q.days[q.days.length - 1].date}`,
-            primeAvg: `${avg(q.days.map((d) => d.prime)).toFixed(2)}ms`,
-            evenAvg: `${avg(q.days.map((d) => d.even)).toFixed(2)}ms`,
+            primeAvg: (() => {
+              const v = avg(q.days.map((d) => d.prime || 0))
+              return v > 0 ? `${v.toFixed(2)}ms` : 'N/A'
+            })(),
+            evenAvg: (() => {
+              const v = avg(q.days.map((d) => d.even || 0))
+              return v > 0 ? `${v.toFixed(2)}ms` : 'N/A'
+            })(),
             days: q.days.map((d) => ({
                 ...d,
                 prime: d.prime > 0 ? `${d.prime}ms` : 'N/A',
