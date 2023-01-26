@@ -59,7 +59,7 @@ const transformData = (data = []) => {
 
 const fetchData = () => {
     loading.value = true
-    return fetch('http://localhost:8000/client-requests', {
+    return fetch('http://localhost:8000/api/client-requests', {
         'content-type': 'application/json',
         method: 'get',
     })
@@ -76,7 +76,6 @@ const fetchData = () => {
         data.value = json
     })
     .catch(err => {
-        console.log('err', err)
         error.value = err
         if (err.json) {
             return err.json.then(json => {
@@ -120,7 +119,9 @@ onMounted(() => {
 <template>
     <Head title="State" />
 
-    <div class="bg-gray-100 p-4">
+    <div v-if="loading">Loading...</div>
+
+    <div class="bg-gray-100 p-4" v-if="error === null">
         <div
             v-for="(data, index) in transformedData"
             :key="index"
@@ -128,5 +129,8 @@ onMounted(() => {
         >
             <QuarterTable :data="data"  /> 
         </div>
+    </div>
+    <div v-else>
+      {{ error }}
     </div>
 </template>

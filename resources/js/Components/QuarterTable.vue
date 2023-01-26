@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="bg-[#fff] p-4">
     <div class="flex mb-2">
-      {{ data.dateRange }}
+      {{ data.dateRange }} (Q{{ data.quarter }})
     </div>
     <div class="flex">
       <strong>
