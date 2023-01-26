@@ -16,9 +16,9 @@ php -S localhost:8000 -t public
 
 ##### Listing of URL available:
 - http://localhost:8000/stats
-- http://localhost:8000/prime
-- http://localhost:8000/even
-- http://localhost:8000/client-requests
+- http://localhost:8000/api/prime
+- http://localhost:8000/api/even
+- http://localhost:8000/api/client-requests
 
 ##### Demo
 <img src="https://i.imgur.com/TcqYSNt.png" />
